@@ -1,10 +1,18 @@
 <template>
-    <div>index-page</div>
+    <div>
+        index-page
+    <span>{{showPage}}</span>
+    </div>
 </template>
 
 <script>
     export default {
-      name: 'IndexPage'
+      name: 'IndexPage',
+      computed: {
+        showPage () {
+          return this.$store.state.Pages.currentPage
+        }
+      }
     }
 </script>
 
