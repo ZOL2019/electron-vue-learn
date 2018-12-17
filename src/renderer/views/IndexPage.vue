@@ -1,25 +1,49 @@
 <template>
     <el-container>
         <el-header>
-            <el-row>
-                <el-col :span="4"><div class="logo">ZOL2018</div></el-col>
-                <el-col :span="16"><div class="title">自定义报表工厂</div></el-col>
-                <el-col :span="4"><div class="menu-title">用户：我自己个儿</div></el-col>
-            </el-row>
+            <header-page/>
         </el-header>
         <el-container>
-            <el-aside width="200px">Aside</el-aside>
-            <el-main>{{showPage}}<!--<component :is="showPage"/>--></el-main>
+            <el-aside width="200px"><aside-page/></el-aside>
+            <el-main><component :is="currentPage"/></el-main>
         </el-container>
     </el-container>
 </template>
 
 <script>
+    import HeaderPage from './HeaderPage/HeaderPage'
+    import MainPage from './MainPage/MainPage'
+    import AsidePage from './AsidePage/AsidePage'
+
+    import FileOperation from '../utils/FileSystem/FileOperation'
+
     export default {
       name: 'IndexPage',
+      components: { MainPage, AsidePage, HeaderPage },
+      data () {
+        return {
+          currentPage: 'MainPage'
+        }
+      },
       computed: {
-        showPage () {
+        changeCurrentPage () {
           return this.$store.state.Pages.currentPage
+        }
+      },
+      created () {
+        this.readdir()
+      },
+      methods: {
+        readdir () {
+          FileOperation.access()
+          let data = []
+          data = FileOperation.readdir()
+          console.log(data)
+        }
+      },
+      watch: {
+        changeCurrentPage (pageName) {
+          this.currentPage = pageName
         }
       }
     }
@@ -29,14 +53,5 @@
     $background_color: #7eb0ff;
     .el-header{
         background-color: $background_color;
-    }
-    .logo{
-        text-align: center;
-    }
-    .title{
-        text-align: center;
-    }
-    .menu-title{
-        text-align: left;
     }
 </style>
