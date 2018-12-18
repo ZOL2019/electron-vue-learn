@@ -14,10 +14,13 @@
     import HeaderPage from './HeaderPage/HeaderPage'
     import MainPage from './MainPage/MainPage'
     import AsidePage from './AsidePage/AsidePage'
+    import NewPage from './NewPage/NewPage'
+    import BackPage from './BackPage/BackPage'
+    import SettingPage from './SettingPage/SettingPage'
 
     export default {
       name: 'IndexPage',
-      components: { MainPage, AsidePage, HeaderPage },
+      components: { MainPage, AsidePage, HeaderPage, NewPage, BackPage, SettingPage },
       data () {
         return {
           currentPage: 'MainPage'
