@@ -4,7 +4,7 @@
             <header-page/>
         </el-header>
         <el-container>
-            <el-aside width="200px"><aside-page/></el-aside>
+            <el-aside><aside-page/></el-aside>
             <el-main><component :is="currentPage"/></el-main>
         </el-container>
     </el-container>
@@ -14,8 +14,6 @@
     import HeaderPage from './HeaderPage/HeaderPage'
     import MainPage from './MainPage/MainPage'
     import AsidePage from './AsidePage/AsidePage'
-
-    import FileOperation from '../utils/FileSystem/FileOperation'
 
     export default {
       name: 'IndexPage',
@@ -31,15 +29,8 @@
         }
       },
       created () {
-        this.readdir()
       },
       methods: {
-        readdir () {
-          FileOperation.access()
-          let data = []
-          data = FileOperation.readdir()
-          console.log(data)
-        }
       },
       watch: {
         changeCurrentPage (pageName) {
@@ -51,7 +42,18 @@
 
 <style scoped lang="scss">
     $background_color: #7eb0ff;
+    $content_height: 496px;
+    $border_style: 1px solid #eee;
     .el-header{
         background-color: $background_color;
+    }
+    .el-aside{
+        height: $content_height;
+        border-right: $border_style;
+        border-bottom: $border_style;
+    }
+    .el-main{
+        height: $content_height;
+        border-bottom: $border_style;
     }
 </style>
