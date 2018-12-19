@@ -3,15 +3,15 @@ const state = {
 }
 
 const mutations = {
-  CHANGE_INDEX_PAGE (state, key) {
-    state.currentPage = key
+  CHANGE_INDEX_PAGE_MUTATIONS (state, val) {
+    state.currentPage = val
   }
 }
 
 const actions = {
-  CHANGE_INDEX_PAGE ({ commit }, key) {
+  CHANGE_INDEX_PAGE_ACTIONS ({ commit }, val) {
     // do something async
-    commit('CHANGE_INDEX_PAGE', key)
+    commit('CHANGE_INDEX_PAGE_MUTATIONS', val)
   }
 }
 

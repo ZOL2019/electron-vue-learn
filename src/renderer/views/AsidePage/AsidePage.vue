@@ -8,8 +8,8 @@
                 </template>
                 <el-menu-item-group>
                     <template slot="title">基本功能</template>
-                    <el-menu-item index="1-1" @click="changeCurrentPage"><i class="el-icon-view"></i>表单查看</el-menu-item>
-                    <el-menu-item index="1-2"><i class="el-icon-edit-outline"></i>新增表单</el-menu-item>
+                    <el-menu-item index="1-1" @click="changeCurrentPage('MainPage')"><i class="el-icon-view"></i>表单查看</el-menu-item>
+                    <el-menu-item index="1-2" @click="changeCurrentPage('NewPage')"><i class="el-icon-edit-outline"></i>新增表单</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
@@ -19,8 +19,8 @@
                 </template>
                 <el-menu-item-group>
                     <template slot="title">系统功能</template>
-                    <el-menu-item index="2-1"><i class="el-icon-news"></i>表单备份</el-menu-item>
-                    <el-menu-item index="2-2"><i class="el-icon-setting"></i>系统设置</el-menu-item>
+                    <el-menu-item index="2-1" @click="changeCurrentPage('BackPage')"><i class="el-icon-news"></i>表单备份</el-menu-item>
+                    <el-menu-item index="2-2" @click="changeCurrentPage('SettingPage')"><i class="el-icon-setting"></i>系统设置</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>
@@ -31,8 +31,8 @@
     export default {
       name: 'AsidePage',
       methods: {
-        changeCurrentPage () {
-          this.$store.state.Pages.currentPage = 'MainPage'
+        changeCurrentPage (val) {
+          this.$store.dispatch('CHANGE_INDEX_PAGE_ACTIONS', val)
         }
       }
     }

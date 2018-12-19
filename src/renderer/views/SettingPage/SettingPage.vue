@@ -1,5 +1,9 @@
 <template>
-    <div>SettingPage</div>
+    <div>
+        <div class="warning-message">
+            ******功能完善中******
+        </div>
+    </div>
 </template>
 
 <script>
@@ -9,5 +13,7 @@
 </script>
 
 <style scoped>
-
+    .warning-message{
+        color: orange;
+    }
 </style>

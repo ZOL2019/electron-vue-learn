@@ -45,17 +45,21 @@
 
 <style scoped lang="scss">
     $background_color: #7eb0ff;
-    $content_height: 496px;
+    $content_height: 564px;
+    $content_width: 840px;
+    $menu_width: 240px;
     $border_style: 1px solid #eee;
     .el-header{
         background-color: $background_color;
     }
     .el-aside{
+        max-width: $menu_width;
         height: $content_height;
         border-right: $border_style;
         border-bottom: $border_style;
     }
     .el-main{
+        min-width: $content_width;
         height: $content_height;
         border-bottom: $border_style;
     }
