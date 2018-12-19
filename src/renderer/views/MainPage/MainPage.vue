@@ -7,7 +7,7 @@
             </el-header>
             <el-main>
                 <el-table
-                        :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+                        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pageSize,currentPage*pageSize)"
                         stripe
                         style="width: 100%"
                 >

@@ -64,7 +64,7 @@
             </el-form-item>
             <el-form-item>
                 <label>详细信息</label>
-                <el-form-item v-for="(item, index) in ruleForm.detailList">
+                <el-form-item v-for="(item, index) in ruleForm.detailList" :key="index">
                     <el-form-item>
                         <el-col :span="2"><label>序号：{{index + 1}}</label></el-col>
                         <el-col :span="22" style="text-align: right"><el-button @click="removeListItem(item)">删除</el-button></el-col>

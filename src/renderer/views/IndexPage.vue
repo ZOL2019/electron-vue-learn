@@ -44,7 +44,7 @@
 </script>
 
 <style scoped lang="scss">
-    $background_color: #7eb0ff;
+    $background_color: #efefef;
     $content_height: 564px;
     $content_width: 840px;
     $menu_width: 240px;
