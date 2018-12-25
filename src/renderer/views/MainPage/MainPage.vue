@@ -1,14 +1,15 @@
 <template>
     <div>
         <el-container>
-            <el-header>
-                <el-button class="refresh" plain @click="readdir"><i class="el-icon-refresh" ></i>重置</el-button>
+            <el-header style="height: 24px">
+                <div class="list-title">表单列表查询</div>
             </el-header>
             <el-main>
                 <div>
                     <el-input placeholder="请输入关键词" v-model="search">
-                    <el-button slot="append" icon="el-icon-search"></el-button>
-                </el-input>
+                    <el-button slot="prepend" icon="el-icon-refresh" @click="readdir"></el-button>
+                    <el-button slot="append" icon="el-icon-search" @click="searchdir"></el-button>
+                    </el-input>
                 </div>
                 <el-table :data="searchData.slice((currentPage-1)*pageSize,currentPage*pageSize)" stripe style="width: 100%">
                     <el-table-column label="编号" type="index"width="100px">
@@ -99,8 +100,20 @@
           this.currentPage = 1
           this.search = ''
         },
-        seearchdir (val) {
-          console.log(val)
+        searchdir () {
+          const search = this.search
+          let data = []
+          if (search) {
+            data = FileOperation.readdir('./static/docs').filter(data => {
+              return Object.keys(data).some(key => {
+                return String(data[key]).toLowerCase().indexOf(search) > -1
+              })
+            })
+            this.tableData = data
+          }
+          this.total = this.tableData.length
+          this.currentPage = 1
+          return this.tableData
         },
         handleEdit (index, row) {
           console.log(index, row)
@@ -113,14 +126,21 @@
         },
         handleCurrentChange: function (val) {
           this.currentPage = val
+        },
+        message (message, type) {
+          this.$message({
+            showClose: true,
+            message: message,
+            type: type
+          })
         }
       }
     }
 </script>
 
 <style scoped>
-    .el-header el-button{
-        font-size: 16px;
+    .el-header{
+        font-size: 18px;
     }
     .refresh{
         color: #11a5ff;
@@ -130,5 +150,10 @@
     }
     .el-pagination{
         text-align: center;
+    }
+    .list-title{
+        color: #11a5ff;
+        text-align: left;
+        font-weight: bold;
     }
 </style>
