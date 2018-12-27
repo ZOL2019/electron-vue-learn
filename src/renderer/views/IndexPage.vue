@@ -17,10 +17,11 @@
     import NewPage from './NewPage/NewPage'
     import BackPage from './BackPage/BackPage'
     import SettingPage from './SettingPage/SettingPage'
+    import DetailsPage from './DetailsPage/DetailsPage'
 
     export default {
       name: 'IndexPage',
-      components: { MainPage, AsidePage, HeaderPage, NewPage, BackPage, SettingPage },
+      components: { MainPage, AsidePage, HeaderPage, NewPage, BackPage, SettingPage, DetailsPage },
       data () {
         return {
           currentPage: 'MainPage'

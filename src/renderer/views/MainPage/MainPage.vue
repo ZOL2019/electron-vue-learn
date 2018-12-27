@@ -19,18 +19,18 @@
                             <span style="margin-left: 10px" v-html="dataFormat(scope.row.name)"></span>
                         </template>
                     </el-table-column>
-                    <el-table-column width="200px">
+                    <el-table-column width="240px">
                         <template slot="header" slot-scope="scope">
                             <label>功能操作</label>
                         </template>
                         <template slot-scope="scope">
                             <el-button
                                     size="mini"
-                                    @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                                    @click="handlePreview(scope.$index, scope.row)">详情</el-button>
                             <el-button
                                     size="mini"
                                     type="danger"
-                                    @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -115,8 +115,9 @@
           this.currentPage = 1
           return this.tableData
         },
-        handleEdit (index, row) {
-          console.log(index, row)
+        handlePreview (index, row) {
+          this.changeDetails(row)
+          this.changeCurrentPage('DetailsPage')
         },
         handleDelete (index, row) {
           console.log(index, row)
@@ -133,6 +134,12 @@
             message: message,
             type: type
           })
+        },
+        changeCurrentPage (val) {
+          this.$store.dispatch('CHANGE_INDEX_PAGE_ACTIONS', val)
+        },
+        changeDetails (val) {
+          this.$store.dispatch('CHANGE_DETAILS_ACTIONS', val)
         }
       }
     }
