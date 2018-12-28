@@ -6,12 +6,34 @@
         </el-header>
         <el-main>
             <div class="text-center">{{changeDetail}}</div>
+            <div class="table-list">
+                <table border="1" cellspacing="0">
+                    <tr>
+                        <td colspan="12">{{detail[0][1]}}</td>
+                        <td colspan="3">{{detail[1][1]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{detail[2][0]}}</td>
+                        <td colspan="4">{{detail[2][1]}}</td>
+                        <td colspan="1">{{detail[3][0]}}</td>
+                        <td colspan="4">{{detail[3][1]}}</td>
+                        <td colspan="1">{{detail[4][0]}}</td>
+                        <td colspan="3">{{detail[4][1]}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="12">{{detail[0][1]}}</td>
+                        <td colspan="3">{{detail[1][1]}}</td>
+                    </tr>
+
+                </table>
+            </div>
         </el-main>
         </el-container>
     </div>
 </template>
 
 <script>
+import ExcleOperation from '../../utils/FileSystem/ExcleOperation'
 export default {
   name: 'DetailsPage',
   data () {
@@ -33,7 +55,8 @@ export default {
   },
   methods: {
     getDetail (val) {
-      this.detail.push(val)
+      const detail = ExcleOperation.readExcle(val)
+      this.detail = JSON.parse(detail)[0].data
       console.error(this.detail)
     },
     changeCurrentPage (val) {
@@ -43,10 +66,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .text-center{
         text-align: center;
         font-size: 18px;
         font-weight: bold;
+    }
+    .table-list{
+        font-size: 14px;
+        table{
+            width: 800px;
+            tr{
+                td{
+                    width: 42px;
+                }
+            }
+        }
     }
 </style>

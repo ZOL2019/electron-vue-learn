@@ -1,14 +1,4 @@
 const fs = require('fs')
-// 判断文件或文件夹是否存在
-function access () {
-  fs.access('./static/docs', fs.constants.F_OK, function (err) {
-    if (err) {
-      console.log(err)
-      return
-    }
-    console.log('存在')
-  })
-}
 // 获取文件夹列表 xls
 function readdir (path) {
   let fileNameMap = []
@@ -17,7 +7,7 @@ function readdir (path) {
   files.forEach((fileName, index) => {
     let idx = fileName.lastIndexOf('.')
     let tmpFlag = fileName.substr(idx + 1)
-    if (tmpFlag === 'xls') {
+    if (tmpFlag === 'xls' || tmpFlag === 'xlsx') {
       fileNameList.push(fileName)
     }
   })
@@ -31,6 +21,5 @@ function readdir (path) {
 }
 
 export default {
-  readdir,
-  access
+  readdir
 }
