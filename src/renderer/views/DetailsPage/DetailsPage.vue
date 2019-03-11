@@ -57,6 +57,7 @@ export default {
     getDetail (val) {
       const detail = ExcleOperation.readExcle(val)
       this.detail = JSON.parse(detail)[0].data
+      // ExcleOperation.writeJson(detail, 'olGyJson')
       console.error(this.detail)
     },
     changeCurrentPage (val) {

@@ -12,6 +12,15 @@ function writeExcle (data, name) {
   }
   )
 }
+
+function writeJson (data, name) {
+  // 写入文件
+  fs.writeFile('./static/docs/' + name + '.json', data, function (err) {
+    if (err) {
+      return console.log(err)
+    }
+  })
+}
 // 读xlsx
 function readExcle (name) {
   const data = xlsx.parse('./static/docs/' + name)
@@ -19,5 +28,6 @@ function readExcle (name) {
 }
 export default {
   writeExcle,
-  readExcle
+  readExcle,
+  writeJson
 }
